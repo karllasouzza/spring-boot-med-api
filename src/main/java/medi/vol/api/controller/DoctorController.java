@@ -1,11 +1,13 @@
 package medi.vol.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
 import medi.vol.api.doctor.Doctor;
 import medi.vol.api.doctor.DoctorRegistrationData;
 import medi.vol.api.doctor.DoctorRepository;
@@ -18,7 +20,8 @@ public class DoctorController {
     private DoctorRepository repository;
 
     @PostMapping
-    public void cadastrar(@RequestBody DoctorRegistrationData data) {
+    @Transactional
+    public void cadastrar(@RequestBody @Valid DoctorRegistrationData data) {
         repository.save(new Doctor(data));
     }
 
