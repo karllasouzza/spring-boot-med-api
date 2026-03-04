@@ -17,12 +17,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import medi.vol.api.patient.Patient;
-import medi.vol.api.patient.PatientExpandedPresenter;
-import medi.vol.api.patient.PatientListData;
-import medi.vol.api.patient.PatientRegistratioData;
-import medi.vol.api.patient.PatientRepository;
-import medi.vol.api.patient.UpdatePatientData;
+import medi.vol.api.domain.patient.Patient;
+import medi.vol.api.domain.patient.PatientExpandedPresenter;
+import medi.vol.api.domain.patient.PatientListData;
+import medi.vol.api.domain.patient.PatientRegistratioData;
+import medi.vol.api.domain.patient.PatientRepository;
+import medi.vol.api.domain.patient.UpdatePatientData;
 
 @RestController
 @RequestMapping("patients")

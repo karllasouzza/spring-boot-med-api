@@ -1,4 +1,4 @@
-package medi.vol.api.doctor;
+package medi.vol.api.domain.doctor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

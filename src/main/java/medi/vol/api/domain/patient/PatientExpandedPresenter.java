@@ -1,6 +1,6 @@
-package medi.vol.api.patient;
+package medi.vol.api.domain.patient;
 
-import medi.vol.api.adress.Adress;
+import medi.vol.api.domain.adress.Adress;
 
 public record PatientExpandedPresenter(
         Long id, String name, String email, String Phone, String Cpf, Adress adress) {

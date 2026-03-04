@@ -1,4 +1,4 @@
-package medi.vol.api.doctor;
+package medi.vol.api.domain.doctor;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import medi.vol.api.adress.Adress;
+import medi.vol.api.domain.adress.Adress;
 
 @Table(name = "doctors")
 @Entity(name = "Doctor")

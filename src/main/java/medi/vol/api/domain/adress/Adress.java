@@ -1,4 +1,4 @@
-package medi.vol.api.adress;
+package medi.vol.api.domain.adress;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
