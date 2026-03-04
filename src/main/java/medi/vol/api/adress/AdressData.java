@@ -5,11 +5,11 @@ import jakarta.validation.constraints.Pattern;
 
 public record AdressData(
 
-        @NotBlank String street,
-        @NotBlank String neighborhood,
-        @NotBlank @Pattern(regexp = "\\d{8}") String zip_code,
-        @NotBlank String city,
-        @NotBlank String state,
-        String additional_info,
-        String number) {
+                @NotBlank String street,
+                @NotBlank String neighborhood,
+                @NotBlank @Pattern(regexp = "\\d{8}") String zipCode,
+                @NotBlank String city,
+                @NotBlank String state,
+                String additionalInfo,
+                String number) {
 }

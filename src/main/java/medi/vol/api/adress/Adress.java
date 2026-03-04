@@ -1,5 +1,6 @@
 package medi.vol.api.adress;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,19 +13,26 @@ import lombok.NoArgsConstructor;
 public class Adress {
         private String street;
         private String neighborhood;
-        private String zip_code;
+
+        @Column(name = "zip_code")
+        private String zipCode;
+
         private String city;
         private String state;
-        private String additional_info;
+
+        @Column(name = "additional_info")
+        
+        private String additionalInfo;
         private String number;
 
         public Adress(Adress data) {
                 this.street = data.street;
                 this.neighborhood = data.neighborhood;
-                this.zip_code = data.zip_code;
+
+                this.zipCode = data.zipCode;
                 this.city = data.city;
                 this.state = data.state;
-                this.additional_info = data.additional_info;
+                this.additionalInfo = data.additionalInfo;
                 this.number = data.number;
         }
 
@@ -37,8 +45,8 @@ public class Adress {
                         this.neighborhood = data.neighborhood();
                 }
 
-                if (data.zip_code() != null) {
-                        this.zip_code = data.zip_code();
+                if (data.zipCode() != null) {
+                        this.zipCode = data.zipCode();
                 }
 
                 if (data.city() != null) {
@@ -49,8 +57,8 @@ public class Adress {
                         this.state = data.state();
                 }
 
-                if (data.additional_info() != null) {
-                        this.additional_info = data.additional_info();
+                if (data.additionalInfo() != null) {
+                        this.additionalInfo = data.additionalInfo();
                 }
 
                 if (data.number() != null) {
