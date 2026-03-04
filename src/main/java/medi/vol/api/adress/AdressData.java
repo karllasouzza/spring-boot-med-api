@@ -1,5 +1,15 @@
 package medi.vol.api.adress;
 
-public record AdressData(String street, String neighborhood, String zipCode, String city, String state, String additionalInfo,
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
+public record AdressData(
+
+        @NotBlank String street,
+        @NotBlank String neighborhood,
+        @NotBlank @Pattern(regexp = "\\d{8}") String zip_code,
+        @NotBlank String city,
+        @NotBlank String state,
+        String additional_info,
         String number) {
 }

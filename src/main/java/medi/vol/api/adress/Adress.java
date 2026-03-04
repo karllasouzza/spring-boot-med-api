@@ -12,19 +12,19 @@ import lombok.NoArgsConstructor;
 public class Adress {
         private String street;
         private String neighborhood;
-        private String zipCode;
+        private String zip_code;
         private String city;
         private String state;
-        private String additionalInfo;
+        private String additional_info;
         private String number;
 
         public Adress(Adress data) {
                 this.street = data.street;
                 this.neighborhood = data.neighborhood;
-                this.zipCode = data.zipCode;
+                this.zip_code = data.zip_code;
                 this.city = data.city;
                 this.state = data.state;
-                this.additionalInfo = data.additionalInfo;
+                this.additional_info = data.additional_info;
                 this.number = data.number;
         }
 }
