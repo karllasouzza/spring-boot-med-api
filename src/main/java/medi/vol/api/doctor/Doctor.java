@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -43,5 +44,20 @@ public class Doctor {
         this.phone = data.phone();
         this.specialty = data.specialty();
         this.adress = new Adress(data.adress());
+    }
+
+    public void updateDoctorData(UpdateDoctorData data) {
+
+        if (data.name() != null) {
+            this.name = data.name();
+        }
+
+        if (data.phone() != null) {
+            this.phone = data.phone();
+        }
+
+        if (data.adressData() != null) {
+            this.adress.updateAdressData(data.adressData());
+        }
     }
 }
