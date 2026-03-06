@@ -49,3 +49,15 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+jar {
+	// Set the main class in the JAR manifest
+	manifest {
+		attributes 'Main-Class': 'med.voll.api.ApiApplication' // Fully qualified class name
+	}
+
+	// Include all dependencies in the JAR (creates a fat JAR)
+	from {
+		configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+}
