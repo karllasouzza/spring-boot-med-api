@@ -25,15 +25,15 @@ public class Address {
         private String additionalInfo;
         private String number;
 
-        public Address(Address data) {
-                this.street = data.street;
-                this.neighborhood = data.neighborhood;
+        public Address(AddressData data) {
+                this.street = data.street();
+                this.neighborhood = data.neighborhood();
 
-                this.zipCode = data.zipCode;
-                this.city = data.city;
-                this.state = data.state;
-                this.additionalInfo = data.additionalInfo;
-                this.number = data.number;
+                this.zipCode = data.zipCode();
+                this.city = data.city();
+                this.state = data.state();
+                this.additionalInfo = data.additionalInfo();
+                this.number = data.number();
         }
 
         public void updateAddressData(AddressData data) {

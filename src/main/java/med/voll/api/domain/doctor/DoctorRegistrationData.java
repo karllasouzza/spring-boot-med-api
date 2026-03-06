@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.domain.address.Address;
+import med.voll.api.domain.address.AddressData;
 
 public record DoctorRegistrationData(
         @NotBlank String name,
@@ -18,6 +18,6 @@ public record DoctorRegistrationData(
 
         @NotNull Specialty specialty,
 
-        @NotNull @Valid Address address) {
+        @NotNull @Valid AddressData address) {
 
 }

@@ -17,15 +17,15 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     @Query(value = """
             SELECT d.* FROM doctors d
             WHERE d.deleted_at IS NULL
-                AND d.specialty = :speciality
+                AND d.specialty = :#{#specialty.name()}
                 AND d.id NOT IN(
                     SELECT a.doctor_id FROM appointments a
-                    WHERE a.data = :date
+                    WHERE a.date = :date
                     AND a.reason_cancellation IS NULL
                 )
             ORDER BY RAND()
             LIMIT 1
             """, nativeQuery = true)
-    Doctor chooseRandomDoctorFreeOnTheDate(@Param("speciality") Specialty speciality,
+    Doctor chooseRandomDoctorFreeOnTheDate(@Param("specialty") Specialty specialty,
             @Param("date") LocalDateTime date);
 }

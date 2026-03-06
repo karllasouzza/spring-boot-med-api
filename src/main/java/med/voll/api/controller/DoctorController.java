@@ -19,7 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.doctor.Doctor;
-import med.voll.api.domain.doctor.DoctorExpandedDataPresenter;
+import med.voll.api.domain.doctor.DoctorDataPresenter;
 import med.voll.api.domain.doctor.DoctorListData;
 import med.voll.api.domain.doctor.DoctorRegistrationData;
 import med.voll.api.domain.doctor.DoctorRepository;
@@ -35,14 +35,14 @@ public class DoctorController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar(@RequestBody @Valid DoctorRegistrationData data, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity register(@RequestBody @Valid DoctorRegistrationData data, UriComponentsBuilder uriBuilder) {
         var newDoctor = new Doctor(data);
 
         repository.save(newDoctor);
 
         var uri = uriBuilder.path("/doctors/{id}").buildAndExpand(newDoctor.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new DoctorExpandedDataPresenter(newDoctor));
+        return ResponseEntity.created(uri).body(new DoctorDataPresenter(newDoctor));
     }
 
     @GetMapping
@@ -57,7 +57,7 @@ public class DoctorController {
     public ResponseEntity getById(@PathVariable("id") Long id) {
         Doctor currentDoctor = repository.getReferenceById(id);
 
-        return ResponseEntity.ok(new DoctorExpandedDataPresenter(currentDoctor));
+        return ResponseEntity.ok(new DoctorDataPresenter(currentDoctor));
     }
 
     @PutMapping
@@ -66,7 +66,7 @@ public class DoctorController {
         Doctor currentDoctor = repository.getReferenceById(data.id());
         currentDoctor.updateDoctorData(data);
 
-        return ResponseEntity.ok(new DoctorExpandedDataPresenter(currentDoctor));
+        return ResponseEntity.ok(new DoctorDataPresenter(currentDoctor));
     }
 
     @DeleteMapping("/{id}")
