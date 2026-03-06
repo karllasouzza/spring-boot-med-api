@@ -1,0 +1,1 @@
+ALTER TABLE appointments RENAME COLUMN data to date;
