@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import med.voll.api.domain.appointment.validations.ValidatorScheduleAppointment;
+import med.voll.api.domain.appointment.validations.cancellation.ValidatorAppointmentCancellation;
+import med.voll.api.domain.appointment.validations.schedule.ValidatorScheduleAppointment;
 import med.voll.api.domain.doctor.Doctor;
 import med.voll.api.domain.doctor.DoctorRepository;
 import med.voll.api.domain.patient.PatientRepository;
@@ -24,9 +25,12 @@ public class ScheduleAppointments {
     private PatientRepository patientRepository;
 
     @Autowired
-    private List<ValidatorScheduleAppointment> validators;
+    private List<ValidatorScheduleAppointment> validatorScheduleAppointment;
 
-    public void toSchedule(ScheduleAppointmentData data) {
+    @Autowired
+    private List<ValidatorAppointmentCancellation> validatorAppointmentCancellations;
+
+    public AppointmentPresenter toSchedule(ScheduleAppointmentData data) {
 
         if (!patientRepository.existsById(data.idPatient())) {
             throw new ValidationException("Patient ID does not exist");
@@ -37,15 +41,32 @@ public class ScheduleAppointments {
             throw new ValidationException("Patient ID does not exist");
         }
 
-        validators.forEach(v -> v.validate(data));
+        validatorScheduleAppointment.forEach(v -> v.validate(data));
 
         var patient = patientRepository.getReferenceById(data.idPatient());
         var doctor = chooseDoctor(data);
+        if (doctor == null) {
+            throw new ValidationException("There is no doctor available on this date.");
+
+        }
 
         var appointment = new Appointment(null, doctor, patient, data.date(), null);
 
         appointmentRepository.save(appointment);
 
+        return new AppointmentPresenter(appointment);
+
+    }
+
+    public void toCancel (CancellationAppointmentData data) {
+        if(!appointmentRepository.existsById(data.idAppointment())) {
+            throw new ValidationException("Appointment id does not exist");
+        }
+
+        validatorAppointmentCancellations.forEach(v -> v.validate(data));
+
+        var appointment = appointmentRepository.getReferenceById(data.idAppointment());
+        appointment.cancel(data.reason());
     }
 
     private Doctor chooseDoctor(ScheduleAppointmentData data) {

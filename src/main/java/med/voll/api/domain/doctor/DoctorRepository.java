@@ -12,15 +12,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     Page<Doctor> findAllByDeletedAtNull(Pageable pagination);
 
-    @Query(value = """
-            SELECT CASE
-                WHEN d.deleted_at IS NOT NULL THEN TRUE
-                ELSE FALSE
-            END
-            FROM doctors d
-                WHERE d.id = :id
-            """, nativeQuery = true)
-    Boolean findDeletedAtNullById(@Param("id") Long id);
+    boolean existsByIdAndDeletedAtNull(Long id);
 
     @Query(value = """
             SELECT d.* FROM doctors d
@@ -29,6 +21,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                 AND d.id NOT IN(
                     SELECT a.doctor_id FROM appointments a
                     WHERE a.data = :date
+                    AND a.reason_cancellation IS NULL
                 )
             ORDER BY RAND()
             LIMIT 1

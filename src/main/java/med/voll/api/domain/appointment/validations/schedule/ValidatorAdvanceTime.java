@@ -1,4 +1,4 @@
-package med.voll.api.domain.appointment.validations;
+package med.voll.api.domain.appointment.validations.schedule;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import med.voll.api.domain.appointment.ScheduleAppointmentData;
 
-@Component
-public class ValidatorTimeAdvance implements ValidatorScheduleAppointment {
+@Component("ValidatorAdvanceTimeSchedule")
+public class ValidatorAdvanceTime implements ValidatorScheduleAppointment {
 
     public void validate(ScheduleAppointmentData data) {
         var appointmentDate = data.date();

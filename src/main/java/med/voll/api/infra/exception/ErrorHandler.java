@@ -23,6 +23,11 @@ public class ErrorHandler {
         return ResponseEntity.badRequest().body(errors.stream().map(ErrorsDataValidation::new).toList());
     }
 
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity ValidationErrorHandler(ValidationException exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
+    }
+
     private record ErrorsDataValidation(String field, String message) {
         public ErrorsDataValidation(FieldError error) {
             this(error.getField(), error.getDefaultMessage());

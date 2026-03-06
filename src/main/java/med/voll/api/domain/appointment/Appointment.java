@@ -42,12 +42,12 @@ public class Appointment {
 
     private LocalDateTime date;
 
-    @Column(name = "motivo_cancelamento")
+    @Column(name = "reason_cancellation")
     @Enumerated(EnumType.STRING)
-    private ReasonCancellation reason_cancellation;
+    private ReasonCancellation reasonCancellation;
 
     public void cancel(ReasonCancellation reason) {
-        this.reason_cancellation = reason;
+        this.reasonCancellation = reason;
     }
 
 }

@@ -1,4 +1,4 @@
-package med.voll.api.domain.appointment.validations;
+package med.voll.api.domain.appointment.validations.schedule;
 
 import java.time.DayOfWeek;
 
@@ -16,7 +16,7 @@ public class ClinicHoursValidator implements ValidatorScheduleAppointment {
 
         var sunday = appointmentData.getDayOfWeek().equals(DayOfWeek.SUNDAY);
         var beforeClinicOpened = appointmentData.getHour() < 7;
-        var afterClinicClosed = appointmentData.getHour() < 18;
+        var afterClinicClosed = appointmentData.getHour() > 18;
 
         if (sunday || beforeClinicOpened || afterClinicClosed) {
             throw new ValidationException("Appointment outside of clinic operating hours");
