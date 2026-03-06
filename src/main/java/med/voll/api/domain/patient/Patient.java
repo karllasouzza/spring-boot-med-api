@@ -38,7 +38,7 @@ public class Patient {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    public Patient(PatientRegistratioData data) {
+    public Patient(PatientRegistrationData data) {
         this.name = data.name();
         this.email = data.email();
         this.cpf = data.cpf();

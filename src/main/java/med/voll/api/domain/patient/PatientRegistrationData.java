@@ -5,9 +5,9 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.domain.address.Address;
+import med.voll.api.domain.address.AddressData;
 
-public record PatientRegistratioData(
+public record PatientRegistrationData(
 
         @NotBlank String name,
 
@@ -17,6 +17,6 @@ public record PatientRegistratioData(
 
         @NotBlank @Pattern(regexp = "\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}") String cpf,
 
-        @NotNull @Valid Address address) {
+        @NotNull @Valid AddressData address) {
 
 }

@@ -76,7 +76,7 @@ public class ScheduleAppointments {
         }
 
         if (data.specialty() == null) {
-            throw new ValidationException("Speciality is required when the doctor is null.");
+            throw new ValidationException("specialty is required when the doctor is null.");
         }
 
         return doctorRepository.chooseRandomDoctorFreeOnTheDate(data.specialty(), data.date());

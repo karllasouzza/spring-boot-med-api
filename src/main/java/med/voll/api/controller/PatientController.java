@@ -21,7 +21,7 @@ import jakarta.validation.Valid;
 import med.voll.api.domain.patient.Patient;
 import med.voll.api.domain.patient.PatientExpandedPresenter;
 import med.voll.api.domain.patient.PatientListData;
-import med.voll.api.domain.patient.PatientRegistratioData;
+import med.voll.api.domain.patient.PatientRegistrationData;
 import med.voll.api.domain.patient.PatientRepository;
 import med.voll.api.domain.patient.UpdatePatientData;
 
@@ -35,7 +35,7 @@ public class PatientController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity registration(@RequestBody @Valid PatientRegistratioData data,
+    public ResponseEntity registration(@RequestBody @Valid PatientRegistrationData data,
             UriComponentsBuilder uriBuilder) {
         Patient newPatient = new Patient(data);
         repository.save(newPatient);
